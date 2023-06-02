@@ -12,7 +12,8 @@
 @base 			<https://w3id.org/example> .
 
 <https://w3id.org/example> rdf:type owl:Ontology ;
-                           dc:title "The example ontology"@en; 
+                           dc:title "The example ontology"@en;
+			            "Примерна онтология"@bg;
                            dc:description "This is an example ontology to illustrate some of the annotations that should be included"@en; 
                            owl:versionInfo "1.0.1"@en;
                            dc:creator "Daniel Garijo, Maria Poveda-Villalon" . 
