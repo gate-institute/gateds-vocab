@@ -1,0 +1,777 @@
+@prefix : <http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3> .
+
+<http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3> rdf:type owl:Ontology .
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#type
+:type rdf:type rdfs:Datatype ;
+      owl:equivalentClass xsd:string ,
+                          [ rdf:type rdfs:Datatype ;
+                            owl:oneOf [ rdf:type rdf:List ;
+                                        rdf:first "@Literal@" ;
+                                        rdf:rest rdf:nil
+                                      ]
+                          ] .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#controlledProperty
+:controlledProperty rdf:type owl:ObjectProperty ;
+                    rdfs:domain :Device ;
+                    rdfs:range :Property .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#deviceCategory
+:deviceCategory rdf:type owl:ObjectProperty ;
+                rdfs:domain :Device ;
+                rdfs:range :Category .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#includedIn
+:includedIn rdf:type owl:ObjectProperty ;
+            rdfs:domain :DataSample ;
+            rdfs:range :TimeSeriesAggregation .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#macAddress
+:macAddress rdf:type owl:ObjectProperty ;
+            rdfs:domain :Device ;
+            rdfs:range :MacAddress .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#partOf
+:partOf rdf:type owl:ObjectProperty ;
+        rdfs:domain :DataSample ;
+        rdfs:range :DatasetCollection .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#refDevice
+:refDevice rdf:type owl:ObjectProperty ,
+                    owl:FunctionalProperty ;
+           rdfs:domain :Device ;
+           rdfs:range :AirQualityForecast ,
+                      :AirQualityMonitoring ,
+                      :AirQualityObserved .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#refLocation
+:refLocation rdf:type owl:ObjectProperty ;
+             rdfs:domain :LocationModel ;
+             rdfs:range :AirQualityForecast ,
+                        :AirQualityMonitoring ,
+                        :AirQualityObserved .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#refPointOfInterest
+:refPointOfInterest rdf:type owl:ObjectProperty ;
+                    rdfs:domain :PointOfInterest ;
+                    rdfs:range :AirQualityForecast ,
+                               :AirQualityMonitoring ,
+                               :AirQualityObserved .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#supportedProtocol
+:supportedProtocol rdf:type owl:ObjectProperty ;
+                   rdfs:domain :Device ;
+                   rdfs:range :Protocol .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#ControlledPropertyType
+:ControlledPropertyType rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :AirQualityForecast ,
+                                    :AirQualityMonitoring ,
+                                    :AirQualityObserved ;
+                        rdfs:range [ rdf:type rdfs:Datatype ;
+                                     owl:oneOf [ rdf:type rdf:List ;
+                                                 rdf:first "airPollution" ;
+                                                 rdf:rest [ rdf:type rdf:List ;
+                                                            rdf:first "atmosphericPressure" ;
+                                                            rdf:rest [ rdf:type rdf:List ;
+                                                                       rdf:first "averageVelocity" ;
+                                                                       rdf:rest [ rdf:type rdf:List ;
+                                                                                  rdf:first "batteryLife" ;
+                                                                                  rdf:rest [ rdf:type rdf:List ;
+                                                                                             rdf:first "batterySupply" ;
+                                                                                             rdf:rest [ rdf:type rdf:List ;
+                                                                                                        rdf:first "cdom" ;
+                                                                                                        rdf:rest [ rdf:type rdf:List ;
+                                                                                                                   rdf:first "conductance" ;
+                                                                                                                   rdf:rest [ rdf:type rdf:List ;
+                                                                                                                              rdf:first "conductivity" ;
+                                                                                                                              rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                         rdf:first "depth" ;
+                                                                                                                                         rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                    rdf:first "eatingActivity" ;
+                                                                                                                                                    rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                               rdf:first "electricityConsumption" ;
+                                                                                                                                                               rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                          rdf:first "energy" ;
+                                                                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                     rdf:first "fillingLevel" ;
+                                                                                                                                                                                     rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                rdf:first "freeChlorine" ;
+                                                                                                                                                                                                rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                           rdf:first "gasConsumption" ;
+                                                                                                                                                                                                           rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                      rdf:first "gateOpening" ;
+                                                                                                                                                                                                                      rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                 rdf:first "heading" ;
+                                                                                                                                                                                                                                 rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                            rdf:first "humidity" ;
+                                                                                                                                                                                                                                            rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                                       rdf:first "light" ;
+                                                                                                                                                                                                                                                       rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                                                  rdf:first "location" ;
+                                                                                                                                                                                                                                                                  rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                                                             rdf:first "milking" ;
+                                                                                                                                                                                                                                                                             rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                                                                        rdf:first "motion" ;
+                                                                                                                                                                                                                                                                                        rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                                                                                   rdf:first "movementActivity" ;
+                                                                                                                                                                                                                                                                                                   rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                                                                                              rdf:first "noiseLevel" ;
+                                                                                                                                                                                                                                                                                                              rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                                                                                                         rdf:first "occupancy" ;
+                                                                                                                                                                                                                                                                                                                         rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                                                                                                                    rdf:first "orp" ;
+                                                                                                                                                                                                                                                                                                                                    rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                                                                                                                               rdf:first "pH" ;
+                                                                                                                                                                                                                                                                                                                                               rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                                                                                                                                          rdf:first "power" ;
+                                                                                                                                                                                                                                                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                                                                                                                                                     rdf:first "precipitation" ;
+                                                                                                                                                                                                                                                                                                                                                                     rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                                                                                                                                                                rdf:first "pressure" ;
+                                                                                                                                                                                                                                                                                                                                                                                rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                                                                                                                                                                           rdf:first "refractiveIndex" ;
+                                                                                                                                                                                                                                                                                                                                                                                           rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                                                                                                                                                                                      rdf:first "salinity" ;
+                                                                                                                                                                                                                                                                                                                                                                                                      rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                                                                                                                                                                                                 rdf:first "smoke" ;
+                                                                                                                                                                                                                                                                                                                                                                                                                 rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                                                                                                                                                                                                            rdf:first "soilMoisture" ;
+                                                                                                                                                                                                                                                                                                                                                                                                                            rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                                                                                                                                                                                                                       rdf:first "solarRadiation" ;
+                                                                                                                                                                                                                                                                                                                                                                                                                                       rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                  rdf:first "speed" ;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                  rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                             rdf:first "tds" ;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                             rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                        rdf:first "temperature" ;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                        rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   rdf:first "trafficFlow" ;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              rdf:first "tss" ;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         rdf:first "turbidity" ;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    rdf:first "uvLampIntensity" ;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               rdf:first "uvOrganicLoad" ;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          rdf:first "waterConsumption" ;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     rdf:first "waterFlow" ;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                rdf:first "waterLevel" ;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           rdf:first "waterPollution" ;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      rdf:first "weatherConditions" ;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 rdf:first "weight" ;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            rdf:first "windDirection" ;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       rdf:first "windSpeed" ;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       rdf:rest rdf:nil
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                           ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                ]
+                                                                                                                                                                                                                                                                                                                                                                                                                                     ]
+                                                                                                                                                                                                                                                                                                                                                                                                                          ]
+                                                                                                                                                                                                                                                                                                                                                                                                               ]
+                                                                                                                                                                                                                                                                                                                                                                                                    ]
+                                                                                                                                                                                                                                                                                                                                                                                         ]
+                                                                                                                                                                                                                                                                                                                                                                              ]
+                                                                                                                                                                                                                                                                                                                                                                   ]
+                                                                                                                                                                                                                                                                                                                                                        ]
+                                                                                                                                                                                                                                                                                                                                             ]
+                                                                                                                                                                                                                                                                                                                                  ]
+                                                                                                                                                                                                                                                                                                                       ]
+                                                                                                                                                                                                                                                                                                            ]
+                                                                                                                                                                                                                                                                                                 ]
+                                                                                                                                                                                                                                                                                      ]
+                                                                                                                                                                                                                                                                           ]
+                                                                                                                                                                                                                                                                ]
+                                                                                                                                                                                                                                                     ]
+                                                                                                                                                                                                                                          ]
+                                                                                                                                                                                                                               ]
+                                                                                                                                                                                                                    ]
+                                                                                                                                                                                                         ]
+                                                                                                                                                                                              ]
+                                                                                                                                                                                   ]
+                                                                                                                                                                        ]
+                                                                                                                                                             ]
+                                                                                                                                                  ]
+                                                                                                                                       ]
+                                                                                                                            ]
+                                                                                                                 ]
+                                                                                                      ]
+                                                                                           ]
+                                                                                ]
+                                                                     ]
+                                                          ]
+                                               ]
+                                   ] .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#DeviceCategoryType
+:DeviceCategoryType rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf :deviceData ;
+                    rdfs:range [ rdf:type rdfs:Datatype ;
+                                 owl:oneOf [ rdf:type rdf:List ;
+                                             rdf:first "HVAC" ;
+                                             rdf:rest [ rdf:type rdf:List ;
+                                                        rdf:first "actuator" ;
+                                                        rdf:rest [ rdf:type rdf:List ;
+                                                                   rdf:first "beacon" ;
+                                                                   rdf:rest [ rdf:type rdf:List ;
+                                                                              rdf:first "endgun" ;
+                                                                              rdf:rest [ rdf:type rdf:List ;
+                                                                                         rdf:first "implement" ;
+                                                                                         rdf:rest [ rdf:type rdf:List ;
+                                                                                                    rdf:first "irrSection" ;
+                                                                                                    rdf:rest [ rdf:type rdf:List ;
+                                                                                                               rdf:first "irrSystem" ;
+                                                                                                               rdf:rest [ rdf:type rdf:List ;
+                                                                                                                          rdf:first "meter" ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first "multimedia" ;
+                                                                                                                                     rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                rdf:first "network" ;
+                                                                                                                                                rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                           rdf:first "sensor" ;
+                                                                                                                                                           rdf:rest rdf:nil
+                                                                                                                                                         ]
+                                                                                                                                              ]
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                                                             ]
+                                                                                                  ]
+                                                                                       ]
+                                                                            ]
+                                                                 ]
+                                                      ]
+                                           ]
+                               ] .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#MacAddressType
+:MacAddressType rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf :deviceData ;
+                rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#Name
+:Name rdf:type owl:DatatypeProperty ;
+      rdfs:subPropertyOf :identityData .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#SupportedProtocolType
+:SupportedProtocolType rdf:type owl:DatatypeProperty ;
+                       rdfs:subPropertyOf :deviceData ;
+                       rdfs:range [ rdf:type rdfs:Datatype ;
+                                    owl:oneOf [ rdf:type rdf:List ;
+                                                rdf:first "3g" ;
+                                                rdf:rest [ rdf:type rdf:List ;
+                                                           rdf:first "bluetooth" ;
+                                                           rdf:rest [ rdf:type rdf:List ;
+                                                                      rdf:first "bluetooth LE" ;
+                                                                      rdf:rest [ rdf:type rdf:List ;
+                                                                                 rdf:first "cat-m" ;
+                                                                                 rdf:rest [ rdf:type rdf:List ;
+                                                                                            rdf:first "coap" ;
+                                                                                            rdf:rest [ rdf:type rdf:List ;
+                                                                                                       rdf:first "ec-gsm-iot" ;
+                                                                                                       rdf:rest [ rdf:type rdf:List ;
+                                                                                                                  rdf:first "gprs" ;
+                                                                                                                  rdf:rest [ rdf:type rdf:List ;
+                                                                                                                             rdf:first "http" ;
+                                                                                                                             rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                        rdf:first "lora" ;
+                                                                                                                                        rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                   rdf:first "lte-m" ;
+                                                                                                                                                   rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                              rdf:first "lwm2m" ;
+                                                                                                                                                              rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                         rdf:first "mqtt" ;
+                                                                                                                                                                         rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                    rdf:first "nb-iot" ;
+                                                                                                                                                                                    rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                               rdf:first "onem2m" ;
+                                                                                                                                                                                               rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                          rdf:first "sigfox" ;
+                                                                                                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                     rdf:first "ul20" ;
+                                                                                                                                                                                                                     rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                                rdf:first "websocket" ;
+                                                                                                                                                                                                                                rdf:rest rdf:nil
+                                                                                                                                                                                                                              ]
+                                                                                                                                                                                                                   ]
+                                                                                                                                                                                                        ]
+                                                                                                                                                                                             ]
+                                                                                                                                                                                  ]
+                                                                                                                                                                       ]
+                                                                                                                                                            ]
+                                                                                                                                                 ]
+                                                                                                                                      ]
+                                                                                                                           ]
+                                                                                                                ]
+                                                                                                     ]
+                                                                                          ]
+                                                                               ]
+                                                                    ]
+                                                         ]
+                                              ]
+                                  ] .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#URI
+:URI rdf:type owl:DatatypeProperty ;
+     rdfs:subPropertyOf :identityData .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#airQuality
+:airQuality rdf:type owl:DatatypeProperty ;
+            rdfs:domain :AirQualityForecast ,
+                        :AirQualityMonitoring ,
+                        :AirQualityObserved .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#airQualityIndex
+:airQualityIndex rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :observedData ;
+                 rdfs:range xsd:nonNegativeInteger .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#areaServed
+:areaServed rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf :observedData ;
+            rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#as
+:as rdf:type owl:DatatypeProperty ;
+    rdfs:subPropertyOf :airQuality ;
+    rdfs:domain :AirQualityObserved ;
+    rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#averageValue
+:averageValue rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf :timeSeries ;
+              rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#c6h6
+:c6h6 rdf:type owl:DatatypeProperty ;
+      rdfs:subPropertyOf :airQuality ;
+      rdfs:domain :AirQualityObserved ;
+      rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#cd
+:cd rdf:type owl:DatatypeProperty ;
+    rdfs:subPropertyOf :airQuality ;
+    rdfs:domain :AirQualityObserved ;
+    rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#co
+:co rdf:type owl:DatatypeProperty ;
+    rdfs:subPropertyOf :airQuality ;
+    rdfs:domain :AirQualityObserved ;
+    rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#co2
+:co2 rdf:type owl:DatatypeProperty ;
+     rdfs:subPropertyOf :airQuality ;
+     rdfs:domain :AirQualityObserved ;
+     rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#coLevel
+:coLevel rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :airQuality ;
+         rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#datasetSize
+:datasetSize rdf:type owl:DatatypeProperty ;
+             rdfs:domain :DatasetCollection ;
+             rdfs:range xsd:integer .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#dateObserved
+:dateObserved rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf :observedData ;
+              rdfs:range xsd:dateTimeStamp .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#deviceData
+:deviceData rdf:type owl:DatatypeProperty ;
+            rdfs:domain :Device .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#id
+:id rdf:type owl:DatatypeProperty ;
+    rdfs:subPropertyOf :identityData .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#identityData
+:identityData rdf:type owl:DatatypeProperty ;
+              rdfs:domain :PointOfInterest ;
+              rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#instValue
+:instValue rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :timeSeries ;
+           rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#maxOverTime
+:maxOverTime rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :timeSeries ;
+             rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#minOverTime
+:minOverTime rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :timeSeries ;
+             rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#ni
+:ni rdf:type owl:DatatypeProperty ;
+    rdfs:subPropertyOf :airQuality ;
+    rdfs:domain :AirQualityObserved ;
+    rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#no
+:no rdf:type owl:DatatypeProperty ;
+    rdfs:subPropertyOf :airQuality ;
+    rdfs:domain :AirQualityObserved ;
+    rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#no2
+:no2 rdf:type owl:DatatypeProperty ;
+     rdfs:subPropertyOf :airQuality ;
+     rdfs:domain :AirQualityObserved ;
+     rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#nox
+:nox rdf:type owl:DatatypeProperty ;
+     rdfs:subPropertyOf :airQuality ;
+     rdfs:domain :AirQualityObserved ;
+     rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#o3
+:o3 rdf:type owl:DatatypeProperty ;
+    rdfs:subPropertyOf :airQuality ;
+    rdfs:domain :AirQualityObserved ;
+    rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#observedData
+:observedData rdf:type owl:DatatypeProperty ;
+              rdfs:domain :AirQualityObserved .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#pb
+:pb rdf:type owl:DatatypeProperty ;
+    rdfs:subPropertyOf :airQuality ;
+    rdfs:domain :AirQualityObserved ;
+    rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#pm1
+:pm1 rdf:type owl:DatatypeProperty ;
+     rdfs:subPropertyOf :airQuality ;
+     rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#pm10
+:pm10 rdf:type owl:DatatypeProperty ;
+      rdfs:subPropertyOf :airQuality ;
+      rdfs:domain :AirQualityObserved ;
+      rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#pm25
+:pm25 rdf:type owl:DatatypeProperty ;
+      rdfs:subPropertyOf :airQuality ;
+      rdfs:domain :AirQualityObserved ;
+      rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#precipitation
+:precipitation rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf :airQuality ;
+               rdfs:domain :AirQualityObserved ;
+               rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#relativeHumidity
+:relativeHumidity rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf :airQuality ;
+                  rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#reliability
+:reliability rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :observedData ;
+             rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#sh2
+:sh2 rdf:type owl:DatatypeProperty ;
+     rdfs:subPropertyOf :airQuality ;
+     rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#so2
+:so2 rdf:type owl:DatatypeProperty ;
+     rdfs:subPropertyOf :airQuality ;
+     rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#temperature
+:temperature rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :airQuality ;
+             rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#timeSeries
+:timeSeries rdf:type owl:DatatypeProperty ;
+            rdfs:domain :TimeSeriesAggregation .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#typeofLocation
+:typeofLocation rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf :observedData ;
+                rdfs:range [ rdf:type rdfs:Datatype ;
+                             owl:oneOf [ rdf:type rdf:List ;
+                                         rdf:first "indoor" ;
+                                         rdf:rest [ rdf:type rdf:List ;
+                                                    rdf:first "outdoor" ;
+                                                    rdf:rest rdf:nil
+                                                  ]
+                                       ]
+                           ] .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#volatileOrganicCompoundsTotal
+:volatileOrganicCompoundsTotal rdf:type owl:DatatypeProperty ;
+                               rdfs:subPropertyOf :airQuality ;
+                               rdfs:domain :AirQualityObserved ;
+                               rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#windDirection
+:windDirection rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf :airQuality ;
+               rdfs:range rdfs:Literal .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#windSpeed
+:windSpeed rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :airQuality ;
+           rdfs:range xsd:float .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#AirQualityForecast
+:AirQualityForecast rdf:type owl:Class ;
+                    rdfs:subClassOf :Forecasting .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#AirQualityMonitoring
+:AirQualityMonitoring rdf:type owl:Class ;
+                      rdfs:subClassOf :Monitoring .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#AirQualityObserved
+:AirQualityObserved rdf:type owl:Class ;
+                    rdfs:subClassOf :Observing .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#Category
+:Category rdf:type owl:Class ;
+          rdfs:subClassOf :DeviceModel .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#Coordinates
+:Coordinates rdf:type owl:Class ;
+             rdfs:subClassOf :Geolocation .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#DataModel
+:DataModel rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#DataSample
+:DataSample rdf:type owl:Class ;
+            rdfs:subClassOf :DataModel .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#DatasetCollection
+:DatasetCollection rdf:type owl:Class ;
+                   rdfs:subClassOf :DataModel .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#Device
+:Device rdf:type owl:Class ;
+        rdfs:subClassOf :DeviceModel .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#DeviceModel
+:DeviceModel rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#Email
+:Email rdf:type owl:Class ;
+       rdfs:subClassOf :Network .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#EnvironmentModel
+:EnvironmentModel rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#Forecasting
+:Forecasting rdf:type owl:Class ;
+             rdfs:subClassOf :EnvironmentModel .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#Geolocation
+:Geolocation rdf:type owl:Class ;
+             rdfs:subClassOf :LocationModel .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#Hardware
+:Hardware rdf:type owl:Class ;
+          rdfs:subClassOf :LocationModel .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#IP
+:IP rdf:type owl:Class ;
+    rdfs:subClassOf :Hardware .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#LocationModel
+:LocationModel rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#MacAddress
+:MacAddress rdf:type owl:Class ;
+            rdfs:subClassOf :Hardware .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#Monitoring
+:Monitoring rdf:type owl:Class ;
+            rdfs:subClassOf :EnvironmentModel .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#Network
+:Network rdf:type owl:Class ;
+         rdfs:subClassOf :LocationModel .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#Observing
+:Observing rdf:type owl:Class ;
+           rdfs:subClassOf :EnvironmentModel .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#PointOfInterest
+:PointOfInterest rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#Port
+:Port rdf:type owl:Class ;
+      rdfs:subClassOf :Software .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#Post
+:Post rdf:type owl:Class ;
+      rdfs:subClassOf :LocationModel .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#Property
+:Property rdf:type owl:Class ;
+          rdfs:subClassOf :DeviceModel .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#Protocol
+:Protocol rdf:type owl:Class ;
+          rdfs:subClassOf :DeviceModel .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#Software
+:Software rdf:type owl:Class ;
+          rdfs:subClassOf :LocationModel .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#TimeSeriesAggregation
+:TimeSeriesAggregation rdf:type owl:Class ;
+                       rdfs:subClassOf :DataModel .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#URI
+:URI rdf:type owl:Class ;
+     rdfs:subClassOf :Network .
+
+
+###  http://www.semanticweb.org/vtvas/ontologies/2023/8/untitled-ontology-3#WWW
+:WWW rdf:type owl:Class ;
+     rdfs:subClassOf :Network .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
